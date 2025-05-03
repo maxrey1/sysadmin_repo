@@ -1,0 +1,14 @@
+---
+# tasks file for nginx_custom
+
+- name: Установка Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Размещение кастомной страницы
+  template:
+    src: index.j2
+    dest: /var/www/html/index.nginx-debian.html
+  notify: Restart Nginx

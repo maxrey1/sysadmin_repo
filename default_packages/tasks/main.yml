@@ -1,0 +1,13 @@
+---
+# tasks file for default_packages
+
+- name: Изменение имени машины
+  hostname:
+    name: "{{ inventory_hostname }}"
+
+- name: Установка базовых пакетов
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ packages_to_install }}"

@@ -1,0 +1,20 @@
+---
+- name: Базовая настройка всех ВМ
+  hosts: all
+  become: true
+  roles:
+    - role: default_packages
+  tags: base_setup
+
+- name: Настройка отдающего Nginx
+  hosts: web
+  become: true
+  roles:
+    - role: nginx_custom
+
+- name: Настройка проксирующего Nginx
+  hosts: proxy
+  become: true
+  roles:
+    - role: nginx_proxy
+  tags: nginx_proxy
